@@ -7,6 +7,12 @@
 </head>
 <body>
 <h1>Songs</h1>
-<a th:href="@{/}">Back to Home</a>
+<div>
+    <ul>
+        <li th:each="songs : ${bestSongsList}" th:text="${songs.title}"></li>
+    </ul>
+    <a th:href="@{/}">Back to Home</a>
+</div>
+
 </body>
 </html>

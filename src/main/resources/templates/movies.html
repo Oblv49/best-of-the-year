@@ -7,6 +7,11 @@
 </head>
 <body>
 <h1>Movies</h1>
-<a th:href="@{/}">Back to Home</a>
+<div>
+    <ul>
+        <li th:each="movie : ${bestMovieList}" th:text="${movie.getTitle()}"></li>
+    </ul>
+    <a th:href="@{/}">Back to Home</a>
+</div>
 </body>
 </html>
