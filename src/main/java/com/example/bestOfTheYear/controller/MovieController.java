@@ -4,6 +4,7 @@ import com.example.bestOfTheYear.model.Movie;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -11,12 +12,25 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/movies")
-public class MoovieController {
+public class MovieController {
     @GetMapping
     public String movieList(Model model) {
         List<Movie> fakeMovieList = getMovies();
         model.addAttribute("bestMovieList", fakeMovieList);
         return "movies";
+    }
+
+    @GetMapping("/{id}")
+    public String movieDetail(Model model, @PathVariable("id") int movieId) {
+        List<Movie> movieList = getMovies();
+        Movie movieToFind = null;
+        for (Movie m : movieList) {
+            if (m.getId() == movieId) {
+                movieToFind = m;
+            }
+        }
+        model.addAttribute("movieIdFind", movieToFind);
+        return "movieDetail";
     }
 
     private List<Movie> getMovies() {

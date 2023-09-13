@@ -9,7 +9,9 @@
 <h1>Movies</h1>
 <div>
     <ul>
-        <li th:each="movie : ${bestMovieList}" th:text="${movie.getTitle()}"></li>
+        <li th:each="movie : ${bestMovieList}">
+            <a th:href="@{'/movies/' + ${movie.getId()}}" th:text="${movie.getTitle()}"></a>
+        </li>
     </ul>
     <a th:href="@{/}">Back to Home</a>
 </div>
